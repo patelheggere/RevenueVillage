@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Revenue Village</string>
+    <string name="title_home">Application</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="private_msg">ಖಾಸಗಿಯವರ ಜಾಗದಲ್ಲಿ ನಿರ್ಮಾಣವಾಗಿರುವ ದಾಖಲೆ ರಹಿತ ಜನವಸತಿಗಳಲ್ಲಿರುವ ಮನೆಮ್ ಅದರ ನಿವೇಶನ ಹಾಗೂ ಅದಕ್ಕೆ ಲಗತ್ತಾಗಿರುವ ಜಾಗ ಮತ್ತು ವಾಸಕ್ಕೆ ಪೂರ್ಕವಾಗಿ ಬಳಸುತ್ತಿರುವ ಕೊಟ್ಟಿಗೆ /ಕಟ್ಟಡದ ಜಾಗ ಮತ್ತು ಇತರೆ ಜಾಗಗಳ ಅಧಿಭೊಗದ ಹಕ್ಕನ್ನು ನೋ೦ದಾಯಿಸಲು ಕೋರಿ ಸಲ್ಲಿಸುತ್ತಿರುವ ಅರ್ಜಿ</string>
+    <string name="to_ac">"\nಗೆ,\n ಉಪವಿಭಾಗಾಧಿಕಾರಿಗಳು "</string>
+    <string name="ac_div">ಉಪ ವಿಭಾಗ,</string>
+    <string name="dist">ಜಿಲ್ಲೆ</string>
+    <string name="applicant_details">\nಅರ್ಜಿದಾರರು ವಿವರ</string>
+    <string name="opposition_details">ಎದುರುದಾರರು/ಪ್ರತಿವಾದಿ</string>
+    <string name="msg2">ಮೇಲ್ಕ೦ಡ ವಿಳಾಸದವನಾದ ನಾನು ಕೃಷಿ ಕಾರ್ಮಿಕನಾಗಿದ್ದು, ಎದುರಾಳಿ(ಪ್ರತಿವಾದಿ)ಯ ಜಾಗದಲ್ಲಿ ನಿರ್ಮಿಸಿಕೊ೦ಡಿರುವ  ವಾಸದ ಮನೆ ಮತ್ತು ವಾಸಕ್ಕೆ ಪೂರಕವಾದ ಜಾಗಗಳು ನನ್ನ ಸ್ವಾಧೀನದಲಿದ್ದು ಹಲವಾರು ವರ್ಷಗಳಿ೦ದ ವಾಸವಾಗಿರುತ್ತೇನೆ. ಅದರ ವಿವರ ಕೆಳಗಿನ೦ತಿದೆ.</string>
+    <string name="site_details">ವಾಸದ ಮನೆ ಮತ್ತದರ ನಿವೇಶನ, ಅದಕ್ಕೆ ಲಗತ್ತಾಗಿರುವ ಜಾಗ ಹಾಗೂ ವಾಸಕ್ಕೆ ಪೂರಕವಾಗಿ  ಬಳಸುತ್ತಿರುವ ಇತರೆ ಸ್ವತ್ತುಗಳು</string>
+    <string name="residing_details">ವಾಸದ ಮನೆಯ ನಿವೇಶನ ಮತ್ತು ಅದಕ್ಕೆ ಲಗತ್ತಾಗಿರುವ ಜಾಗ</string>
+    <string name="Select_Taluk">Select Taluk</string>
+    <string name="something_wrong" />
+    <string name="Select_Tanda">Select village</string>
+    <string name="Select_District">Select District</string>
+</resources>
