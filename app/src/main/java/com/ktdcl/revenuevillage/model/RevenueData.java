@@ -12,11 +12,13 @@ public class RevenueData {
     private String toolsDimen, toolsNorth, toolsSouth, toolsWest, toolsEast;
     private String othersDimen, othersNorth, othersSouth, othersWest, othersEast;
     private String totalDimen;
+    private long time;
 
     public RevenueData() {
     }
 
-    public RevenueData(String ac, String acDist, String appName, String appFatherName, String appAge, String appAdhar, String appProfession, String appDist, String appTaluk, String appVillage, String appOthers, String oppName, String oppFatherName, String oppAge, String oppAdhar, String oppProfession, String oppDist, String oppTaluk, String oppVillage, String oppOthers, String dist, String taluk, String village, String newVillage, String surveyNo, String hissaNo, String tax, String estimatedValue, String tenure, String resDimen, String resNorth, String resSouth, String resWest, String resEast, String kottigeDimen, String kottigeNorth, String kottigeSouth, String kottigeWest, String kottigeEast, String toolsDimen, String toolsNorth, String toolsSouth, String toolsWest, String toolsEast, String othersDimen, String othersNorth, String othersSouth, String othersWest, String othersEast, String totalDimen) {
+    public RevenueData(long time, String ac, String acDist, String appName, String appFatherName, String appAge, String appAdhar, String appProfession, String appDist, String appTaluk, String appVillage, String appOthers, String oppName, String oppFatherName, String oppAge, String oppAdhar, String oppProfession, String oppDist, String oppTaluk, String oppVillage, String oppOthers, String dist, String taluk, String village, String newVillage, String surveyNo, String hissaNo, String tax, String estimatedValue, String tenure, String resDimen, String resNorth, String resSouth, String resWest, String resEast, String kottigeDimen, String kottigeNorth, String kottigeSouth, String kottigeWest, String kottigeEast, String toolsDimen, String toolsNorth, String toolsSouth, String toolsWest, String toolsEast, String othersDimen, String othersNorth, String othersSouth, String othersWest, String othersEast, String totalDimen) {
+        this.time = time;
         this.ac = ac;
         this.acDist = acDist;
         this.appName = appName;
@@ -67,6 +69,14 @@ public class RevenueData {
         this.othersWest = othersWest;
         this.othersEast = othersEast;
         this.totalDimen = totalDimen;
+    }
+
+    public long getTime() {
+        return time;
+    }
+
+    public void setTime(long time) {
+        this.time = time;
     }
 
     public String getAc() {

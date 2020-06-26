@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "123153246589",
+    "firebase_url": "https://revenuevillage-88f64.firebaseio.com",
+    "project_id": "revenuevillage-88f64",
+    "storage_bucket": "revenuevillage-88f64.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:123153246589:android:5c8ad606d95fffa4860414",
+        "android_client_info": {
+          "package_name": "com.ktdcl.revenuevillage"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "123153246589-0l76eigbft493ktff2flrqva57510t53.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ktdcl.revenuevillage",
+            "certificate_hash": "ae529bb88fe9628bb0a576c24b2c83a9c947c5f6"
+          }
+        },
+        {
+          "client_id": "123153246589-49b2jtouq5t7s6kj1b9r7g42uljfdqhd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAu7AjCU6aTkUXI6MX_1SvrikZoFd4GH0Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "123153246589-49b2jtouq5t7s6kj1b9r7g42uljfdqhd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

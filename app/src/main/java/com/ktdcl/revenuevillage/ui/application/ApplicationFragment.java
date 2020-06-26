@@ -1,9 +1,12 @@
 package com.ktdcl.revenuevillage.ui.application;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +15,15 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.ktdcl.revenuevillage.R;
 import com.ktdcl.revenuevillage.model.DistrictModel;
 import com.ktdcl.revenuevillage.model.RevenueData;
@@ -23,6 +31,8 @@ import com.ktdcl.revenuevillage.model.TalukModel;
 import com.ktdcl.revenuevillage.model.VillageModel;
 import com.ktdcl.revenuevillage.network.ApiInterface;
 import com.ktdcl.revenuevillage.network.RetrofitInstance;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +66,7 @@ public class ApplicationFragment extends Fragment {
     private EditText editTextTenure;
     private Button buttonSubmit;
     private String ac, acDist;
+    private TextView totalDimen;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -66,8 +77,10 @@ public class ApplicationFragment extends Fragment {
 
     private void initViews() {
 
+        editTextMoolaGrama = mView.findViewById(R.id.moola_gram);
         editTextAppOtherVillage = mView.findViewById(R.id.et_app_other_village);
         editTextOppOtherVillage = mView.findViewById(R.id.et_opp_other_village);
+
         editTextTenure = mView.findViewById(R.id.et_tenure);
         editTextResDimen = mView.findViewById(R.id.et_res_dimension);
         editTextResNorth = mView.findViewById(R.id.res_north);
@@ -128,6 +141,7 @@ public class ApplicationFragment extends Fragment {
         spinnerOppVillage = mView.findViewById(R.id.sp_opp_village);
 
         buttonSubmit = mView.findViewById(R.id.submit);
+        totalDimen= mView.findViewById(R.id.total_dimen);
 
         initListener();
         setUpNetwork();
@@ -147,7 +161,7 @@ public class ApplicationFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(position!=0)
                 {
-
+                    ac = districtModelList.get(position-1).getDist_name();
                 }
             }
 
@@ -156,13 +170,14 @@ public class ApplicationFragment extends Fragment {
 
             }
         });
+
         spinnerAppDist.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //  product = mDistrictNamesList.get(position);
                 if(position!=0)
                 {
-                    dist = districtModelList.get(position-1).getDist_name();
+                    appDist = districtModelList.get(position-1).getDist_name();
                     getTaluks(districtModelList.get(position-1).getDist_id(), 1);
                 }
             }
@@ -178,7 +193,7 @@ public class ApplicationFragment extends Fragment {
                 //  product = mDistrictNamesList.get(position);
                 if(position!=0)
                 {
-                    dist = districtModelList.get(position-1).getDist_name();
+                    acDist = districtModelList.get(position-1).getDist_name();
                    // getTaluks(districtModelList.get(position-1).getDist_id(), 4);
                 }
             }
@@ -188,13 +203,48 @@ public class ApplicationFragment extends Fragment {
 
             }
         });
+
+        spinnerAppVillage.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //  product = mDistrictNamesList.get(position);
+                if(position!=0)
+                {
+                    appVillage = villageModelList.get(position-1).getTanda_name();
+                    // getTaluks(districtModelList.get(position-1).getDist_id(), 4);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        spinnerOppVillage.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //  product = mDistrictNamesList.get(position);
+                if(position!=0)
+                {
+                    oppVillage = villageModelList.get(position-1).getTanda_name();
+                    // getTaluks(districtModelList.get(position-1).getDist_id(), 4);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         spinnerOppDist.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //  product = mDistrictNamesList.get(position);
                 if(position!=0)
                 {
-                    dist = districtModelList.get(position-1).getDist_name();
+                    oppDist = districtModelList.get(position-1).getDist_name();
                     getTaluks(districtModelList.get(position-1).getDist_id(), 2);
                 }
             }
@@ -211,7 +261,7 @@ public class ApplicationFragment extends Fragment {
                 //  product = mDistrictNamesList.get(position);
                 if(position!=0)
                 {
-                    taluk = talukModelList.get(position-1).getName();
+                    appTaluk = talukModelList.get(position-1).getName();
                     getTanda(talukModelList.get(position-1).getTlk_id(), 1);
                 }
             }
@@ -228,7 +278,7 @@ public class ApplicationFragment extends Fragment {
                 //  product = mDistrictNamesList.get(position);
                 if(position!=0)
                 {
-                    taluk = talukModelList.get(position-1).getName();
+                    oppTaluk = talukModelList.get(position-1).getName();
                     getTanda(talukModelList.get(position-1).getTlk_id(), 2);
                 }
             }
@@ -255,20 +305,313 @@ public class ApplicationFragment extends Fragment {
 
             }
         });
+
+        editTextResDimen.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                calculateTotal();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        editTextKottigeDimen.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                calculateTotal();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        editTextToolsDimen.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                calculateTotal();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        editTextOthersDimen.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+             calculateTotal();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+    }
+    int total = 0, v=0, v2=0, v3=0, v4=0;
+
+    private void calculateTotal() {
+        if(editTextResDimen.getText()!=null && editTextResDimen.getText().toString().trim().length()>0) {
+            v = Integer.parseInt(editTextResDimen.getText().toString().trim());
+        }
+        if(editTextToolsDimen.getText()!=null && editTextToolsDimen.getText().toString().trim().length()>0) {
+            v2 = Integer.parseInt(editTextToolsDimen.getText().toString().trim());
+        }
+        if(editTextKottigeDimen.getText()!=null && editTextKottigeDimen.getText().toString().trim().length()>0) {
+            v3 = Integer.parseInt(editTextKottigeDimen.getText().toString().trim());
+        }
+        if(editTextOthersDimen.getText()!=null && editTextOthersDimen.getText().toString().trim().length()>0) {
+            v4 = Integer.parseInt(editTextOthersDimen.getText().toString().trim());
+        }
+        total = v+v2+v3+v4;
+        totalDimen.setText(total+" ಚದರ ಅಡಿ");
     }
 
     private void submitDetails() {
         RevenueData revenueData = new RevenueData();
-        revenueData.setAc(ac);
-        revenueData.setAcDist(acDist);
+        if(ac!=null && ac.length()>0) {
+            revenueData.setAc(ac);
+        }
+        else{
+            alert_message_out("ಉಪವಿಭಾಗ ಅಧಿಕಾರಿ ಆಯ್ಕೆಮಾಡಿ");
+            return;
+        }
 
-        revenueData.setAppName(editTextAppName.getText().toString().trim());
-        revenueData.setAppFatherName(editTextAppFatherName.getText().toString().trim());
-        revenueData.setAppAge(editTextAppAge.getText().toString().trim());
-        revenueData.setAppAdhar(editTextAppAdhar.getText().toString().trim());
-        revenueData.setAppProfession(editTextAppProfession.getText().toString().trim());
+        if(acDist!=null && acDist.length()>0) {
+            revenueData.setAcDist(acDist);
+        }
+        else{
+            alert_message_out(getContext().getString(R.string.Select_District));
+            return;
+        }
+
+        if(editTextAppName.getText()!=null && editTextAppName.getText().toString().length()>0) {
+            revenueData.setAppName(editTextAppName.getText().toString().trim());
+        }
+        else{
+            alert_message_out("ಅರ್ಜಿದಾರರ ಹೆಸರನ್ನು ನಮೂದಿಸಿ");
+            return;
+        }
+
+        if(editTextAppFatherName.getText()!=null && editTextAppFatherName.getText().toString().length()>0) {
+            revenueData.setAppFatherName(editTextAppFatherName.getText().toString().trim());
+        }
+        else{
+            alert_message_out("ಅರ್ಜಿದಾರರ ತಂದೆ / ಗಂಡನ ಹೆಸರನ್ನು ನಮೂದಿಸಿ");
+            return;
+        }
+
+        if(editTextAppAge.getText()!=null && editTextAppAge.getText().toString().length()>0) {
+            revenueData.setAppAge(editTextAppAge.getText().toString().trim());
+        }
+        else{
+            alert_message_out("ಅರ್ಜಿದಾರರ ವಯಸ್ಸನ್ನು ನಮೂದಿಸಿ");
+            return;
+        }
+
+        if(editTextAppAdhar.getText()!=null && editTextAppAdhar.getText().toString().length()>0) {
+            revenueData.setAppAdhar(editTextAppAdhar.getText().toString().trim());
+        }
+        else{
+            alert_message_out("ಅರ್ಜಿದಾರರ ಆಧಾರ್ / ಪಡಿತರ ಚೀಟಿ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ");
+            return;
+        }
+
+        if(editTextAppProfession.getText()!=null && editTextAppProfession.getText().toString().length()>0) {
+            revenueData.setAppProfession(editTextAppProfession.getText().toString().trim());
+        }
+        else{
+            alert_message_out("ಅರ್ಜಿದಾರರ ವೃತ್ತಿಯನ್ನು ನಮೂದಿಸಿ");
+            return;
+        }
+
+        if(appDist!=null )
+        {
+            revenueData.setAppDist(appDist);
+        }
+        else
+        {
+            alert_message_out("ಅರ್ಜಿದಾರರ ಜಿಲ್ಲೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ");
+            return;
+        }
+        if(appTaluk!=null )
+        {
+            revenueData.setAppTaluk(appTaluk);
+        }
+        else
+        {
+            alert_message_out("ಅರ್ಜಿದಾರರ ತಾಲ್ಲೂಕು  ಆಯ್ಕೆಮಾಡಿ");
+            return;
+        }
+
+        if(appVillage!=null )
+        {
+            revenueData.setAppVillage(appVillage);
+        }
+        else
+        {
+            alert_message_out("ಅರ್ಜಿದಾರರ ಸ್ಥಳವನ್ನು  ಆಯ್ಕೆಮಾಡಿ");
+            return;
+        }
+
+
+        revenueData.setAppOthers(editTextAppOtherVillage.getText().toString().trim());
+
+
+
+        if(editTextOppName.getText()!=null && editTextOppName.getText().toString().length()>0) {
+            revenueData.setOppName(editTextOppName.getText().toString().trim());
+        }
+        else{
+            alert_message_out("ಪ್ರತಿವಾದಿ ಹೆಸರನ್ನು ನಮೂದಿಸಿ");
+            return;
+        }
+
+        if(editTextOppFatherName.getText()!=null && editTextOppFatherName.getText().toString().length()>0) {
+            revenueData.setOppFatherName(editTextOppFatherName.getText().toString().trim());
+        }
+        else{
+            alert_message_out("ಪ್ರತಿವಾದಿ ತಂದೆ / ಗಂಡನ ಹೆಸರನ್ನು ನಮೂದಿಸಿ");
+            return;
+        }
+
+        if(editTextOppAge.getText()!=null && editTextOppAge.getText().toString().length()>0) {
+            revenueData.setOppAge(editTextOppAge.getText().toString().trim());
+        }
+        else{
+            alert_message_out("ಪ್ರತಿವಾದಿ ವಯಸ್ಸನ್ನು ನಮೂದಿಸಿ");
+            return;
+        }
+
+
+        if(editTextOppProfession.getText()!=null && editTextOppProfession.getText().toString().length()>0) {
+            revenueData.setOppProfession(editTextOppProfession.getText().toString().trim());
+        }
+        else{
+            alert_message_out("ಪ್ರತಿವಾದಿ ವೃತ್ತಿಯನ್ನು ನಮೂದಿಸಿ");
+            return;
+        }
+
+        if(oppDist!=null )
+        {
+            revenueData.setOppDist(oppDist);
+        }
+        else
+        {
+            alert_message_out("ಪ್ರತಿವಾದಿ ಜಿಲ್ಲೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ");
+            return;
+        }
+        if(oppTaluk!=null )
+        {
+            revenueData.setOppTaluk(oppTaluk);
+        }
+        else
+        {
+            alert_message_out("ಪ್ರತಿವಾದಿ ತಾಲ್ಲೂಕು  ಆಯ್ಕೆಮಾಡಿ");
+            return;
+        }
+
+        if(oppVillage!=null )
+        {
+            revenueData.setOppVillage(oppVillage);
+        }
+        else
+        {
+            alert_message_out("ಪ್ರತಿವಾದಿ ಸ್ಥಳವನ್ನು  ಆಯ್ಕೆಮಾಡಿ");
+            return;
+        }
+
+
+        revenueData.setOppAdhar(editTextOppAdhar.getText().toString().trim());
+        revenueData.setOppOthers(editTextOppOtherVillage.getText().toString().trim());
+
+        revenueData.setDist(dist);
+        revenueData.setTaluk(taluk);
+        revenueData.setVillage(village);
+
+        revenueData.setNewVillage(newVillage.getText().toString().trim());
+        revenueData.setSurveyNo(editTextSurveyNo.getText().toString().trim());
+        revenueData.setHissaNo(editTextHissa.getText().toString().trim());
+        revenueData.setTax(editTextTax.getText().toString().trim());
+
+        if(editTextEstimatedValue!=null && editTextEstimatedValue.getText().toString().length()>0) {
+            revenueData.setEstimatedValue(editTextEstimatedValue.getText().toString());
+        }
+        else
+        {
+            alert_message_out("ಅಂದಾಜು ಮೌಲ್ಯವನ್ನು ನಮೂದಿಸಿ");
+            return;
+        }
+
+        if(editTextTenure!=null && editTextTenure.getText().toString().length()>0) {
+            revenueData.setTenure(editTextTenure.getText().toString().trim());
+        }
+        else
+        {
+            alert_message_out("ವಾಸದ ಅವಧಿ");
+            return;
+        }
+
+        revenueData.setResDimen(editTextResDimen.getText().toString().trim());
+        revenueData.setResNorth(editTextResNorth.getText().toString().trim());
+        revenueData.setResSouth(editTextResSouth.getText().toString().trim());
+        revenueData.setResEast(editTextResEast.getText().toString().trim());
+        revenueData.setResWest(editTextResWest.getText().toString().trim());
+
+        revenueData.setKottigeDimen(editTextKottigeDimen.getText().toString().trim());
+        revenueData.setKottigeEast(editTextKottigeEast.getText().toString().trim());
+        revenueData.setKottigeNorth(editTextKottigeNorth.getText().toString().trim());
+        revenueData.setKottigeSouth(editTextKottigeSouth.getText().toString().trim());
+        revenueData.setKottigeWest(editTextKottigeWest.getText().toString().trim());
+
+        revenueData.setToolsDimen(editTextToolsDimen.getText().toString().trim());
+        revenueData.setToolsEast(editTextToolsEast.getText().toString().trim());
+        revenueData.setToolsNorth(editTextToolsNorth.getText().toString().trim());
+        revenueData.setToolsSouth(editTextToolsSouth.getText().toString().trim());
+        revenueData.setToolsWest(editTextToolsWest.getText().toString().trim());
+
+        revenueData.setOthersDimen(editTextOthersDimen.getText().toString().trim());
+        revenueData.setOthersEast(editTextOthersEast.getText().toString().trim());
+        revenueData.setOthersNorth(editTextOthersNorth.getText().toString().trim());
+        revenueData.setOthersSouth(editTextOthersSouth.getText().toString().trim());
+        revenueData.setOthersWest(editTextOthersWest.getText().toString().trim());
+
+        revenueData.setTotalDimen(totalDimen.getText().toString());
+        revenueData.setTime(System.currentTimeMillis());
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("revenueDetails");
+
+        myRef.push().setValue(revenueData);
 
         Toast.makeText(getContext(), "Data saved Success", Toast.LENGTH_LONG).show();
+        getActivity().recreate();
     }
 
     private ApiInterface apiInterface;
@@ -411,4 +754,20 @@ public class ApplicationFragment extends Fragment {
             Toast.makeText(getContext(), "No internet", Toast.LENGTH_LONG).show();
         }
     }
+
+    public void alert_message_out(String output) {
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+        alertDialogBuilder.setMessage(output);
+        alertDialogBuilder.setPositiveButton("Ok",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+
+                    }
+                });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
 }

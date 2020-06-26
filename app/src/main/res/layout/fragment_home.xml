@@ -100,6 +100,9 @@
                 android:id="@+id/et_app_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:layout_weight="3" />
         </LinearLayout>
 
@@ -116,6 +119,9 @@
                 android:text="ತ೦ದೆಯ\n/ಗ೦ಡನ ಹೆಸರು:" />
 
             <EditText
+                android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:id="@+id/et_app_father_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -135,8 +141,12 @@
                 android:text="ವಯಸ್ಸು:" />
 
             <EditText
+                android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:id="@+id/et_app_age"
                 android:layout_width="0dp"
+                android:inputType="number"
                 android:layout_height="wrap_content"
                 android:layout_weight="3" />
         </LinearLayout>
@@ -154,6 +164,9 @@
                 android:text="ಆಧಾರ \n/ಪಡಿತರ ಚೀಟಿ ಸ೦: " />
 
             <EditText
+                android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:id="@+id/et_app_adhaar"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -173,6 +186,9 @@
                 android:text="ಉದ್ಯೋಗ:" />
 
             <EditText
+                android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:id="@+id/et_app_profession"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -248,6 +264,9 @@
                 android:text="ಇತರೆ" />
 
             <EditText
+                android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:id="@+id/et_app_other_village"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -280,6 +299,9 @@
                 android:text="ಹೆಸರು:" />
 
             <EditText
+                android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:id="@+id/et_opp_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -299,6 +321,9 @@
                 android:text="ತ೦ದೆಯ\n/ಗ೦ಡನ ಹೆಸರು:" />
 
             <EditText
+                android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:id="@+id/et_opp_father"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -318,6 +343,9 @@
                 android:text="ವಯಸ್ಸು:" />
 
             <EditText
+                android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:id="@+id/et_opp_age"
                 android:layout_width="0dp"
                 android:inputType="number"
@@ -338,6 +366,9 @@
                 android:text="ಆಧಾರ \n/ಪಡಿತರ ಚೀಟಿ ಸ೦: " />
 
             <EditText
+                android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:id="@+id/et_opp_adhar"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -357,6 +388,9 @@
                 android:text="ಉದ್ಯೋಗ:" />
 
             <EditText
+                android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:id="@+id/et_opp_profession"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -431,6 +465,9 @@
                 android:text="ಇತರೆ" />
 
             <EditText
+                android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:id="@+id/et_opp_other_village"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -495,6 +532,9 @@
                 android:text="ಮೂಲ ಗ್ರಾಮ:" />
 
             <EditText
+                android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:id="@+id/moola_gram"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -514,6 +554,9 @@
                 android:text="ಹೊಸದಾಗಿ ರಚನೆಗೊ೦ಡ/ಸಮ್ಮಿಲನಗೊ೦ಡ ಗ್ರಾಮ:" />
 
             <EditText
+                android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:id="@+id/et_new_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -533,6 +576,9 @@
                 android:text="ನೆಲಸಿರುವ ವಾಸದ ಮನೆ, ಅದರ ನಿವೇಶನ ಮತ್ತು ವಾಸಕ್ಕೆ ಪೂರಕವಾದ ಜಾಗವಿರುವ ಸರ್ವೆ ನ೦:" />
 
             <EditText
+                android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:id="@+id/et_survey_no"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -552,8 +598,12 @@
                 android:text="ಪ್ಲಾಟ್/ಹಿಸ್ಸಾ ನ೦:" />
 
             <EditText
+                android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:id="@+id/et_hissa"
                 android:layout_width="0dp"
+                android:inputType="number"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
         </LinearLayout>
@@ -571,8 +621,12 @@
                 android:text="ಕ೦ದಾಯ ರೂ:" />
 
             <EditText
+                android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:id="@+id/et_tax"
                 android:layout_width="0dp"
+                android:inputType="numberDecimal"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
         </LinearLayout>
@@ -590,8 +644,12 @@
                 android:text="ವಾಸದ ಮನೆಯ ನಿವೇಶನ ಅದಕ್ಕೆ ಲಗತ್ತಾದ ಜಾಗ ಮತ್ತು ವಾಸಕ್ಕೆ ಪೂರಕವಾದ ಜಾಗದ ಅ೦ದಾಜು ಮೌಲ್ಯ:" />
 
             <EditText
+                android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:id="@+id/et_estimate"
                 android:layout_width="0dp"
+                android:inputType="number"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
         </LinearLayout>
@@ -609,8 +667,12 @@
                 android:text="ಅರ್ಜಿದಾರರು ಎಷ್ಟು ಅವಧಿಯಿ೦ದ ಈ ಮನೆ/ಜಾಗದಲ್ಲಿ ವಾಸವಾಗಿದ್ದರೆ:" />
 
             <EditText
+                android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:id="@+id/et_tenure"
                 android:layout_width="0dp"
+                android:inputType="number"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
         </LinearLayout>
@@ -646,8 +708,12 @@
                 android:text="ವಿಸ್ತೀರ್ಣ(ಚದರ ಅಡಿಗಳಲ್ಲಿ):" />
 
             <EditText
+                android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:id="@+id/et_res_dimension"
                 android:layout_width="0dp"
+                android:inputType="number"
                 android:layout_height="wrap_content"
                 android:layout_weight="2" />
         </LinearLayout>
@@ -671,6 +737,9 @@
                 android:text="ಉತ್ತರ :" />
 
             <EditText
+                android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:id="@+id/res_north"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -689,6 +758,9 @@
                 android:text="ದಕ್ಷಿಣ" />
 
             <EditText
+                android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:id="@+id/res_south"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -707,6 +779,9 @@
                 android:text="ಪೂರ್ವ:" />
 
             <EditText
+                android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:id="@+id/res_east"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -725,6 +800,9 @@
                 android:text="ಪಶ್ಚಿಮ:" />
 
             <EditText
+                android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:id="@+id/res_west"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -752,8 +830,12 @@
                 android:text="ವಿಸ್ತೀರ್ಣ(ಚದರ ಅಡಿಗಳಲ್ಲಿ):" />
 
             <EditText
+                android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:id="@+id/et_kottige_dimen"
                 android:layout_width="0dp"
+                android:inputType="number"
                 android:layout_height="wrap_content"
                 android:layout_weight="2" />
         </LinearLayout>
@@ -777,6 +859,9 @@
                 android:text="ಉತ್ತರ :" />
 
             <EditText
+                android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:id="@+id/et_kottige_north"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -795,6 +880,9 @@
                 android:text="ದಕ್ಷಿಣ" />
 
             <EditText
+                android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:id="@+id/et_kottige_south"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -813,6 +901,9 @@
                 android:text="ಪೂರ್ವ:" />
 
             <EditText
+                android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:id="@+id/et_kottige_east"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -831,6 +922,9 @@
                 android:text="ಪಶ್ಚಿಮ:" />
 
             <EditText
+                android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:id="@+id/et_kottige_west"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -858,6 +952,10 @@
                 android:text="ವಿಸ್ತೀರ್ಣ(ಚದರ ಅಡಿಗಳಲ್ಲಿ):" />
 
             <EditText
+                android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
+                android:inputType="number"
                 android:id="@+id/et_tools_dimen"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -883,6 +981,9 @@
                 android:text="ಉತ್ತರ :" />
 
             <EditText
+                android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:id="@+id/et_tools_north"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -901,6 +1002,9 @@
                 android:text="ದಕ್ಷಿಣ" />
 
             <EditText
+                android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:id="@+id/et_tools_south"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -919,6 +1023,9 @@
                 android:text="ಪೂರ್ವ:" />
 
             <EditText
+                android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:id="@+id/et_tools_east"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -937,6 +1044,9 @@
                 android:text="ಪಶ್ಚಿಮ:" />
 
             <EditText
+                android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:id="@+id/et_tools_west"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -966,6 +1076,10 @@
                 android:text="ವಿಸ್ತೀರ್ಣ(ಚದರ ಅಡಿಗಳಲ್ಲಿ):" />
 
             <EditText
+                android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
+                android:inputType="number"
                 android:id="@+id/et_others_dimen"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -991,6 +1105,9 @@
                 android:text="ಉತ್ತರ :" />
 
             <EditText
+                android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:id="@+id/et_others_north"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -1009,6 +1126,9 @@
                 android:text="ದಕ್ಷಿಣ" />
 
             <EditText
+                android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:id="@+id/et_others_south"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -1027,6 +1147,9 @@
                 android:text="ಪೂರ್ವ:" />
 
             <EditText
+                android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:id="@+id/et_others_east"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -1045,6 +1168,9 @@
                 android:text="ಪಶ್ಚಿಮ:" />
 
             <EditText
+                android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:id="@+id/et_others_west"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -1065,6 +1191,7 @@
             <TextView
                 android:id="@+id/total_dimen"
                 android:layout_width="0dp"
+                android:textStyle="bold"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 />
@@ -1079,7 +1206,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="submit"
+            android:text="ಸಲ್ಲಿಸು"
             android:layout_marginTop="16dp"
             android:layout_gravity="center"
             android:gravity="center"
