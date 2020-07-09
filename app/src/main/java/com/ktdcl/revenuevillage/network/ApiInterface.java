@@ -3,6 +3,7 @@ package com.ktdcl.revenuevillage.network;
 import com.ktdcl.revenuevillage.model.DistrictModel;
 import com.ktdcl.revenuevillage.model.LetterModel;
 import com.ktdcl.revenuevillage.model.ResponseModel;
+import com.ktdcl.revenuevillage.model.RevenueData;
 import com.ktdcl.revenuevillage.model.StaffModel;
 import com.ktdcl.revenuevillage.model.TalukModel;
 import com.ktdcl.revenuevillage.model.VillageModel;
@@ -65,5 +66,8 @@ public interface ApiInterface {
 
     @POST("InsertLetterDetails.php")
     Call<ResponseModel> insertLetter(@Body LetterModel letterModel);
+
+    @POST("addRevenueData.php")
+    Call<ResponseModel> insertRevenue(@Body RevenueData letterModel);
 
 }

@@ -26,6 +26,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.ktdcl.revenuevillage.R;
 import com.ktdcl.revenuevillage.model.DistrictModel;
+import com.ktdcl.revenuevillage.model.ResponseModel;
 import com.ktdcl.revenuevillage.model.RevenueData;
 import com.ktdcl.revenuevillage.model.TalukModel;
 import com.ktdcl.revenuevillage.model.VillageModel;
@@ -124,7 +125,6 @@ public class ApplicationFragment extends Fragment {
         editTextOppAge = mView.findViewById(R.id.et_opp_age);
         editTextOppProfession = mView.findViewById(R.id.et_opp_profession);
 
-        editTextMoolaGrama = mView.findViewById(R.id.moola_gram);
 
         spinnerAc = mView.findViewById(R.id.ac_spinner);
         spinnerAcDist = mView.findViewById(R.id.sp_ac_dist);
@@ -171,6 +171,7 @@ public class ApplicationFragment extends Fragment {
             }
         });
 
+
         spinnerAppDist.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -213,6 +214,9 @@ public class ApplicationFragment extends Fragment {
                     appVillage = villageModelList.get(position-1).getTanda_name();
                     // getTaluks(districtModelList.get(position-1).getDist_id(), 4);
                 }
+                else {
+                    appVillage = null;
+                }
             }
 
             @Override
@@ -229,6 +233,10 @@ public class ApplicationFragment extends Fragment {
                 {
                     oppVillage = villageModelList.get(position-1).getTanda_name();
                     // getTaluks(districtModelList.get(position-1).getDist_id(), 4);
+                }
+                else
+                {
+                    oppVillage = null;
                 }
             }
 
@@ -297,6 +305,21 @@ public class ApplicationFragment extends Fragment {
                 {
                     dist = districtModelList.get(position-1).getDist_name();
                     getTaluks(districtModelList.get(position-1).getDist_id(), 3);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        spinnerTaluk.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(position!=0)
+                {
+                    taluk = talukModelList.get(position-1).getName();
                 }
             }
 
@@ -470,8 +493,10 @@ public class ApplicationFragment extends Fragment {
             return;
         }
 
-        if(appVillage!=null )
+        if(appVillage!=null || editTextAppOtherVillage.getText()!=null)
         {
+            if(appVillage==null || appVillage.length()==0)
+                appVillage = editTextAppOtherVillage.getText().toString().trim();
             revenueData.setAppVillage(appVillage);
         }
         else
@@ -480,11 +505,26 @@ public class ApplicationFragment extends Fragment {
             return;
         }
 
+        if(editTextMoolaGrama.getText()!=null && editTextMoolaGrama.getText().toString().trim().length()>0)
+        {
+            revenueData.setVillage(editTextMoolaGrama.getText().toString().trim());
+        }
+        else
+        {
+            revenueData.setVillage(newVillage.getText().toString().trim());
+        }
 
         revenueData.setAppOthers(editTextAppOtherVillage.getText().toString().trim());
 
 
-
+       /* if(editTextOppAdhar.getText()!=null && editTextOppAdhar.getText().toString().length()>0) {
+            revenueData.setOppAdhar(editTextOppAdhar.getText().toString().trim());
+        }
+        else{
+            alert_message_out("ಪ್ರತಿವಾದಿ ಆಧಾರ್ / ಪಡಿತರ ಚೀಟಿ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ");
+            return;
+        }
+*/
         if(editTextOppName.getText()!=null && editTextOppName.getText().toString().length()>0) {
             revenueData.setOppName(editTextOppName.getText().toString().trim());
         }
@@ -537,8 +577,10 @@ public class ApplicationFragment extends Fragment {
             return;
         }
 
-        if(oppVillage!=null )
+        if(oppVillage!=null || editTextOppOtherVillage.getText()!=null )
         {
+            if(oppVillage==null || oppVillage.length()==0)
+                oppVillage = editTextOppOtherVillage.getText().toString().trim();
             revenueData.setOppVillage(oppVillage);
         }
         else
@@ -553,7 +595,7 @@ public class ApplicationFragment extends Fragment {
 
         revenueData.setDist(dist);
         revenueData.setTaluk(taluk);
-        revenueData.setVillage(village);
+       // revenueData.setVillage(village);
 
         revenueData.setNewVillage(newVillage.getText().toString().trim());
         revenueData.setSurveyNo(editTextSurveyNo.getText().toString().trim());
@@ -577,6 +619,7 @@ public class ApplicationFragment extends Fragment {
             alert_message_out("ವಾಸದ ಅವಧಿ");
             return;
         }
+
 
         revenueData.setResDimen(editTextResDimen.getText().toString().trim());
         revenueData.setResNorth(editTextResNorth.getText().toString().trim());
@@ -608,10 +651,32 @@ public class ApplicationFragment extends Fragment {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("revenueDetails");
 
-        myRef.push().setValue(revenueData);
+       // myRef.push().setValue(revenueData);
 
-        Toast.makeText(getContext(), "Data saved Success", Toast.LENGTH_LONG).show();
-        getActivity().recreate();
+
+        Call<ResponseModel> responseModelCall = apiInterface.insertRevenue(revenueData);
+        responseModelCall.enqueue(new Callback<ResponseModel>() {
+            @Override
+            public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+                if(response.body().isStatus())
+                {
+                    Toast.makeText(getContext(), "Data saved Success", Toast.LENGTH_LONG).show();
+                    getActivity().recreate();
+
+                }
+
+                else
+                {
+                    Toast.makeText(getContext(), "not able to Save Data", Toast.LENGTH_LONG).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseModel> call, Throwable t) {
+                Toast.makeText(getContext(), "Something not right", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     private ApiInterface apiInterface;
@@ -621,6 +686,7 @@ public class ApplicationFragment extends Fragment {
         RetrofitInstance retrofitInstance = new RetrofitInstance();
         retrofitInstance.setClient();
         apiInterface = retrofitInstance.getClient().create(ApiInterface.class);
+
     }
 
     private void getTaluks(String dist_id, final int id) {
