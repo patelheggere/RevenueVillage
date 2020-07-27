@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Revenue Village</string>
-    <string name="title_home">Application</string>
+    <string name="title_home">private land</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="private_msg">ಖಾಸಗಿಯವರ ಜಾಗದಲ್ಲಿ ನಿರ್ಮಾಣವಾಗಿರುವ ದಾಖಲೆ ರಹಿತ ಜನವಸತಿಗಳಲ್ಲಿರುವ ಮನೆಮ್ ಅದರ ನಿವೇಶನ ಹಾಗೂ ಅದಕ್ಕೆ ಲಗತ್ತಾಗಿರುವ ಜಾಗ ಮತ್ತು ವಾಸಕ್ಕೆ ಪೂರ್ಕವಾಗಿ ಬಳಸುತ್ತಿರುವ ಕೊಟ್ಟಿಗೆ /ಕಟ್ಟಡದ ಜಾಗ ಮತ್ತು ಇತರೆ ಜಾಗಗಳ ಅಧಿಭೊಗದ ಹಕ್ಕನ್ನು ನೋ೦ದಾಯಿಸಲು ಕೋರಿ ಸಲ್ಲಿಸುತ್ತಿರುವ ಅರ್ಜಿ</string>
@@ -16,4 +16,11 @@
     <string name="something_wrong" />
     <string name="Select_Tanda">ತಾ೦ಡಾ ಆಯ್ಕೆ ಮಾಡಿ</string>
     <string name="Select_District">ಜಿಲ್ಲೆ ಆಯ್ಕೆ ಮಾಡಿ</string>
+    <string name="title_rev">Revenue Application</string>
+    <string name="taluk">Taluk</string>
+    <string name="village">Village</string>
+    <string name="new_village">new village</string>
+    <string name="population">Population</string>
+    <string name="total_family">Total Family</string>
+    <string name="dist_from_old_village">Distance from Old Village</string>
 </resources>

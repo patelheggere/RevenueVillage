@@ -1,4 +1,4 @@
-package com.ktdcl.revenuevillage.ui.notifications;
+package com.ktdcl.revenuevillage.ui.revenue_app;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
